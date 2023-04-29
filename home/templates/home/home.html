@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+        <link rel="stylesheet" href={% static 'home/css/style.css' %}>
+{% endblock title %}
+
+{% block content %}
+
+<main>
+    <div id="welcome">
+        <h1>PictureFY</h1>
+        <p class="describe-text">
+            is a neural network-powered image processing platform that offers tools for <br/>
+            object recognition, style transfer, and image colorization.
+        </p>
+        <a href="{% url 'recognition_upload_file' %}" class="action_btn">Try it now</a>
+
+    </div>
+</main>
+
+{% endblock content %}

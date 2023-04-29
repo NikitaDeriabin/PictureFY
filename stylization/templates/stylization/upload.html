@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    <link rel="stylesheet" href={% static 'stylization/css/style.css' %}>
+{% endblock title %}
+
+{% block content %}
+
+    <div id="bg-spinner">
+        <div id="position-spinner">
+            <span id="spinner"></span>
+        </div>
+    </div>
+
+    <header id="home" class="header">
+        <div class="overlay text-white text-center">
+            <h1 class="display-2 font-weight-bold my-3">Style transfer</h1>
+            <h2 class="display-4 mb-5">Upload your files below</h2>
+            <a class="btn-header" href="#grid">Get Started</a>
+        </div>
+    </header>
+
+    <div id="grid" class="grid">
+
+        <div class="item grid-header">
+            <h4>To apply a style, <span style="color: #FDA500">upload</span> both the
+                <span style="color: #FDA500">main image</span> and the <span style="color: #FDA500">style image</span>.
+                <br/><br/>If you are uploading <span style="color: #FDA500">archives</span>, make sure the number of main images
+                in the <span style="color: #FDA500">first</span> archive
+                <span style="color: #FDA500">matches</span>
+                the number of style images in the <span style="color: #FDA500">second</span> one.
+            </h4>
+        </div>
+
+        <div class="item upload-section">
+            <div>
+                <h4>Allowed extensions: <br/>
+                    <h5>
+                        <span style="color: #FDA500">.jpeg .png .webp .gif .jfif .tiff .bmp</span>
+                    </h5>
+                </h4>
+            </div>
+            <div class="upload-menu">
+                <div class="upload-wrapper">
+                    <header>File Uploader</header>
+                    <form id="form-image-stylization" action="{% url 'stylization_upload_file' %}" method="post"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="image-main-upload-window">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Browse File to upload main images</p>
+                            {{ form.main_file }}
+                        </div>
+                        <div id="image-style-upload-window">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Browse File to upload style images</p>
+                            {{ form.style_file }}
+                        </div>
+                    </form>
+                    <div class="uploaded-section">
+                        <section id="image-main-uploaded-area" class="uploaded-area"></section>
+                        <section id="image-style-uploaded-area" class="uploaded-area"></section>
+                    </div>
+                    <p><input id="image-submit-btn" class="btn-upload" type="submit"
+                              name="form_type_files" value="Upload"/></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item upload-section">
+            <div>
+                <h4>Allowed extensions: <br/>
+                    <h5>
+                        <span style="color: #FDA500">.zip .rar</span>
+                    </h5>
+                </h4>
+            </div>
+            <div class="upload-menu">
+                <div class="upload-wrapper">
+                    <header>Archive Uploader</header>
+                    <form id="form-archive-stylization" action="{% url 'stylization_upload_file' %}" method="post"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="archive-main-upload-window">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Browse File to upload main images</p>
+                            {{ archive_form.main_file }}
+                        </div>
+                        <div id="archive-style-upload-window">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Browse File to upload style images</p>
+                            {{ archive_form.style_file }}
+                        </div>
+                    </form>
+                    <div class="uploaded-section">
+                        <section id="archive-main-uploaded-area" class="uploaded-area"></section>
+                        <section id="archive-style-uploaded-area" class="uploaded-area"></section>
+                    </div>
+                    <p><input id="archive-submit-btn" class="btn-upload" type="submit"
+                              name="form_type_archive" value="Upload"/></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src={% static 'stylization/js/script.js' %}></script>
+
+{% endblock content %}
+
+

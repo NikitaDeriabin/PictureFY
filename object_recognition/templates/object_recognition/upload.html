@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <link rel="stylesheet" href={% static 'object_recognition/css/style.css' %}>
+{% endblock title %}
+
+{% block content %}
+
+    <div id="bg-spinner">
+        <div id="position-spinner">
+            <span id="spinner"></span>
+        </div>
+    </div>
+
+    <header id="home" class="header">
+        <div class="overlay text-white text-center">
+            <h1 class="display-2 font-weight-bold my-3">Object recognition</h1>
+            <h2 class="display-4 mb-5">Upload your files below</h2>
+            <a class="btn-header" href="#grid">Get Started</a>
+        </div>
+    </header>
+
+    <div id="grid" class="grid">
+        <div class="item grid-header">
+            <h4>Here you can upload your images as a files or archives and get back a dataset as
+                a <span style="color: #FDA500">.csv</span> file with the name of image file and the name of the object
+                located on it.
+                <br/><br/>Simply <span style="color: #FDA500">select</span> the desired upload form,
+                <span style="color: #FDA500">choose</span> the files and
+                <span style="color: #FDA500">send</span> them for processing.
+            </h4>
+        </div>
+        <div class="item upload-section">
+            <div>
+                <h4>Allowed extensions: <br/>
+                    <h5>
+                        <span style="color: #FDA500">.jpeg .png .webp .gif .jfif .tiff .bmp</span>
+                    </h5>
+                </h4>
+            </div>
+            <div class="upload-menu">
+                <div class="upload-wrapper">
+                    <header>File Uploader</header>
+                    <form id="form-image-recognition" action="{% url 'recognition_upload_file' %}" method="post"
+                          enctype="multipart/form-data">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Browse Files to upload</p>
+                        {% csrf_token %}
+                        {{ image_form.file }}
+                    </form>
+                    <section id="image-uploaded-area" class="uploaded-area"></section>
+                    <p><input id="image-submit-btn" class="btn-upload"
+                              type="submit" name="form_type_files" value="Upload"/></p>
+                </div>
+            </div>
+        </div>
+        <div class="item upload-section">
+            <div>
+                <h4>Allowed extensions: <br/>
+                    <h5>
+                        <span style="color: #FDA500">.zip .rar</span>
+                    </h5>
+                </h4>
+            </div>
+            <div class="upload-menu">
+                <div class="upload-wrapper">
+                    <header>Archive Uploader</header>
+                    <form id="form-archive-recognition" action="{% url 'recognition_upload_file' %}"
+                          method="post"
+                          enctype="multipart/form-data">
+
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Browse File to upload</p>
+                        {% csrf_token %}
+                        {{ archive_form.file }}
+
+                    </form>
+                    <section id="archive-uploaded-area" class="uploaded-area"></section>
+                    <p><input id="archive-submit-btn" class="btn-upload"
+                              type="submit" name="form_type_archive" value="Upload"/></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src={% static 'object_recognition/js/script.js' %}></script>
+{% endblock content %}

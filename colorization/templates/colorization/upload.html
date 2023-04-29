@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <link rel="stylesheet" href={% static 'colorization/css/style.css' %}>
+{% endblock title %}
+
+{% block content %}
+
+    <div id="bg-spinner">
+        <div id="position-spinner">
+            <span id="spinner"></span>
+        </div>
+    </div>
+
+    <header id="home" class="header">
+        <div class="overlay text-white text-center">
+            <h1 class="display-2 font-weight-bold my-3">Colorization</h1>
+            <h2 class="display-4 mb-5">Upload your files below</h2>
+            <a class="btn-header" href="#grid">Get Started</a>
+        </div>
+    </header>
+
+    <div id="grid" class="grid">
+
+        <div class="item grid-header">
+            <h4>Here you can upload your <span style="color: #FDA500">black and white</span> images as a files or
+                archives  and <br/> receive back a <span style="color: #FDA500">.zip</span> archive containing processed color
+                images.
+                <br/><br/>
+                Upload your black and white images and see how they could look in reality.</h4>
+        </div>
+
+        <div class="item upload-section">
+            <div>
+                <h4>Allowed extensions: <br/>
+                    <h5>
+                        <span style="color: #FDA500">.jpeg .png .webp .gif .jfif .tiff .bmp</span>
+                    </h5>
+                </h4>
+            </div>
+            <div class="upload-menu">
+                <div class="upload-wrapper">
+                    <header>File Uploader</header>
+                    <form id="form-image-colorization" action="{% url 'colorization_upload_file' %}" method="post"
+                          enctype="multipart/form-data">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Browse File to upload</p>
+                        {% csrf_token %}
+                        {{ image_form.file }}
+                    </form>
+                    <section id="image-uploaded-area" class="uploaded-area"></section>
+                    <p><input id="image-submit-btn" class="btn-upload"
+                              type="submit" name="form_type_files" value="Upload"/></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item upload-section">
+            <div>
+                <h4>Allowed extensions: <br/>
+                    <h5>
+                        <span style="color: #FDA500">.zip .rar</span>
+                    </h5>
+                </h4>
+            </div>
+            <div class="upload-menu">
+                <div class="upload-wrapper">
+                    <header>Archive Uploader</header>
+                    <form id="form-archive-colorization" action="{% url 'colorization_upload_file' %}" method="post"
+                          enctype="multipart/form-data">
+
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Browse File to upload</p>
+                        {% csrf_token %}
+                        {{ archive_form.file }}
+
+                    </form>
+                    <section id="archive-uploaded-area" class="uploaded-area"></section>
+                    <p><input id="archive-submit-btn" class="btn-upload"
+                              type="submit" name="form_type_archive" value="Upload"/></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src={% static 'colorization/js/script.js' %}></script>
+
+{% endblock content %}

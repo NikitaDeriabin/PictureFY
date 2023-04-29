@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
+
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- custom css & js-->
+    <link rel="stylesheet" href={% static 'css/style.css' %}>
+    <script src={% static 'js/main.js' %} defer></script>
+
+    <title>pictureFY</title>
+
+    {% block title %}
+    {% endblock title %}
+
+</head>
+
+<body>
+<header>
+    <div class="navbar">
+        <div class="logo">
+            <a href="{% url 'home' %}"></a>
+        </div>
+        <ul class="links">
+            <li id="object-recognition"><a href="{% url 'recognition_upload_file' %}">object recognition</a></li>
+            <li id="style-transfer"><a href="{% url 'stylization_upload_file' %}">style transfer</a></li>
+            <li id="colorization"><a href="{% url 'colorization_upload_file' %}">colorization</a></li>
+        </ul>
+        <div class="toggle_btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+
+    <div class="dropdown_menu">
+        <ul>
+            <li><a href="{% url 'recognition_upload_file' %}">object recognition</a></li>
+            <li><a href="{% url 'stylization_upload_file' %}">style transfer</a></li>
+            <li><a href="{% url 'colorization_upload_file' %}">colorization</a></li>
+        </ul>
+    </div>
+</header>
+
+{% block content %}
+{% endblock content %}
+
+<footer>
+    <div class="footer-content">
+        <span>&copy; 2023 PictureFY</span>
+        <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{#<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>#}
+</body>
+</html>

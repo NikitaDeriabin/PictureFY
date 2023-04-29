@@ -1,0 +1,75 @@
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: url('/static/img/home-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+main {
+    position: relative;
+    display: flex;
+
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
+    min-height: 650px;
+}
+
+/* WELCOME */
+div#welcome {
+    margin-top: 2rem;
+    color: #fff;
+    top: 14rem;
+    position: relative;
+    height: 55%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action_btn {
+    margin-top: 1rem;
+}
+
+.action_btn:hover {
+    scale: 1.05;
+    color: #fff;
+}
+
+div#welcome h1 {
+    font-size: 90px;
+    font-family: 'Consolas', sans-serif;
+    color: #fff;
+    font-weight: 650;
+    transition: 0.5s;
+}
+
+#welcome h1:hover {
+    -webkit-text-stroke: 2px #fff;
+    color: transparent;
+}
+
+#welcome p:hover {
+    background: linear-gradient(90deg, rgba(237, 204, 132, 1) 5%, rgba(255, 191, 29, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.describe-text {
+    padding: 1rem 0;
+    font-size: 23px;
+    font-weight: 10;
+    font-family: 'Consolas', sans-serif;
+    color: lightgrey;
+    transition: 0.5s;
+}
+
+@media (max-width: 992px){
+     div#welcome{
+        top: 10rem;
+    }
+}
+
+
